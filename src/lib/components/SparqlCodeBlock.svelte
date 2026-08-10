@@ -1,5 +1,5 @@
 <script>
-  let { code } = $props();
+  let { code, onExecute } = $props();
 
   let copied = $state(false);
 
@@ -12,6 +12,12 @@
       }, 2000);
     } catch (err) {
       console.error('Failed to copy:', err);
+    }
+  }
+
+  function handleExecute() {
+    if (onExecute) {
+      onExecute(code);
     }
   }
 </script>
@@ -55,6 +61,27 @@
     </button>
   </div>
   <pre class="code-block"><code>{code}</code></pre>
+
+  {#if onExecute}
+    <div class="code-footer">
+      <button class="execute-btn" onclick={handleExecute} title="Execute query">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Execute
+      </button>
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -114,5 +141,31 @@
 
   .code-block code {
     white-space: pre;
+  }
+
+  .code-footer {
+    padding: 0.5rem 0.75rem;
+    background-color: #161b22;
+    border-top: 1px solid var(--border);
+  }
+
+  .execute-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .execute-btn:hover {
+    background-color: var(--accent-hover);
+    transform: scale(1.02);
   }
 </style>
