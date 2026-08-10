@@ -1,7 +1,8 @@
 <script>
   import SparqlCodeBlock from './SparqlCodeBlock.svelte';
+  import TableResult from './TableResult.svelte';
 
-  let { message } = $props();
+  let { message, onExecute } = $props();
 
   function formatTime(date) {
     return new Date(date).toLocaleTimeString([], {
@@ -57,12 +58,21 @@
           <div class="spinner"></div>
           <span>Generating SPARQL query...</span>
         </div>
+      {:else if message.executing}
+        <div class="loading">
+          <div class="spinner"></div>
+          <span>Executing query...</span>
+        </div>
       {:else if message.content}
         <p>{message.content}</p>
       {/if}
 
       {#if message.sparql}
-        <SparqlCodeBlock code={message.sparql} />
+        <SparqlCodeBlock code={message.sparql} {onExecute} />
+      {/if}
+
+      {#if message.table}
+        <TableResult table={message.table} />
       {/if}
 
       {#if message.error}
