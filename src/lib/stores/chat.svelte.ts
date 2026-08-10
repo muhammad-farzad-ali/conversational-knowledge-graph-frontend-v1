@@ -1,13 +1,15 @@
-import { generateSparql } from '$lib/api/client';
+import { generateSparql, executeSparql } from '$lib/api/client';
 
 export interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   sparql?: string;
+  table?: string;
   timestamp: Date;
   loading?: boolean;
   error?: boolean;
+  executing?: boolean;
 }
 
 function createChatStore() {
@@ -70,6 +72,58 @@ function createChatStore() {
     }
   }
 
+  async function executeSparqlQuery(sparql: string): Promise<void> {
+    if (!sparql.trim() || isLoading) return;
+
+    const userMessage: Message = {
+      id: generateId(),
+      role: 'user',
+      content: 'Execute this SPARQL query',
+      timestamp: new Date()
+    };
+
+    messages = [...messages, userMessage];
+    isLoading = true;
+
+    const assistantMessage: Message = {
+      id: generateId(),
+      role: 'assistant',
+      content: '',
+      timestamp: new Date(),
+      executing: true
+    };
+
+    messages = [...messages, assistantMessage];
+
+    try {
+      const table = await executeSparql(sparql);
+
+      messages = messages.map((m) =>
+        m.id === assistantMessage.id
+          ? {
+              ...m,
+              table,
+              content: 'Here are the query results:',
+              executing: false
+            }
+          : m
+      );
+    } catch (error) {
+      messages = messages.map((m) =>
+        m.id === assistantMessage.id
+          ? {
+              ...m,
+              content: 'Sorry, an error occurred while executing the query. Please try again.',
+              executing: false,
+              error: true
+            }
+          : m
+      );
+    } finally {
+      isLoading = false;
+    }
+  }
+
   function clearMessages(): void {
     messages = [];
   }
@@ -82,6 +136,7 @@ function createChatStore() {
       return isLoading;
     },
     sendMessage,
+    executeSparqlQuery,
     clearMessages
   };
 }
