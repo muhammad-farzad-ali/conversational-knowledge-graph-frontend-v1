@@ -57,7 +57,7 @@
       </div>
     {:else}
       {#each chatStore.messages as message (message.id)}
-        <ChatMessage {message} />
+        <ChatMessage {message} onExecute={(sparql) => chatStore.executeSparqlQuery(sparql)} />
       {/each}
     {/if}
   </main>
