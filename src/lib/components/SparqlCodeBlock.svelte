@@ -84,11 +84,12 @@
     </div>
   </div>
 
-  {#if isEditing}
-    <textarea class="code-editor" bind:value={editedCode} spellcheck="false" onkeydown={handleKeydown}></textarea>
-  {:else}
+  <div class="code-body">
     <pre class="code-block"><code>{code}</code></pre>
-  {/if}
+    {#if isEditing}
+      <textarea class="code-editor" bind:value={editedCode} spellcheck="false" onkeydown={handleKeydown}></textarea>
+    {/if}
+  </div>
 
   {#if onExecute}
     <div class="code-footer">
@@ -173,9 +174,16 @@
     white-space: pre;
   }
 
+  .code-body {
+    position: relative;
+  }
+
   .code-editor {
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0.75rem;
     background-color: var(--code-bg);
@@ -184,9 +192,11 @@
     font-size: 0.8125rem;
     line-height: 1.6;
     color: var(--text-primary);
-    resize: vertical;
     outline: none;
     tab-size: 2;
+    resize: none;
+    overflow: auto;
+    box-sizing: border-box;
   }
 
   .code-editor:focus {
