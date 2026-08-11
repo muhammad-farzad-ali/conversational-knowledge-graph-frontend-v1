@@ -67,6 +67,17 @@ function createChatStore() {
               }
             : m
         );
+      } else {
+        messages = messages.map((m) =>
+          m.id === assistantMessage.id
+            ? {
+                ...m,
+                content: response.content || 'An unexpected error occurred.',
+                loading: false,
+                error: true
+              }
+            : m
+        );
       }
     } catch (error) {
       messages = messages.map((m) =>

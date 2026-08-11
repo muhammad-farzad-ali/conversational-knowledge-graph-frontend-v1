@@ -1,0 +1,40 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - heading "SPARQL Chat" [level=1] [ref=e9]
+      - button "Clear" [ref=e11] [cursor=pointer]
+  - main [ref=e15]:
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: You
+        - generic [ref=e45]: 17:19
+      - paragraph [ref=e47]: List publications
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]: Assistant
+        - generic [ref=e55]: 17:19
+      - generic [ref=e56]:
+        - paragraph [ref=e57]: "Here is your SPARQL query:"
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]: SPARQL
+            - generic [ref=e61]:
+              - button "Copy to clipboard" [ref=e62] [cursor=pointer]
+              - button "Edit query" [ref=e135] [cursor=pointer]
+          - code [ref=e140]: "PREFIX dblp: <https://dblp.org/rdf/schema#> SELECT ?pubTitle (COUNT(DISTINCT ?authorName) AS ?Authors) (COUNT(DISTINCT ?venue) AS ?Venues) (COUNT(DISTINCT ?year) AS ?Years) WHERE { ?pub a dblp:Publication . ?pub dblp:title ?pubTitle . OPTIONAL { ?pub dblp:authoredBy ?author . ?author dblp:primaryCreatorName ?authorName . } OPTIONAL { ?pub dblp:publishedIn ?venue . } OPTIONAL { ?pub dblp:yearOfPublication ?year . } } GROUP BY ?pubTitle ORDER BY ASC(?pubTitle) LIMIT 10"
+          - button "Execute" [ref=e73] [cursor=pointer]
+    - generic [ref=e89]:
+      - generic [ref=e90]:
+        - generic [ref=e91]: You
+        - generic [ref=e92]: 17:20
+      - paragraph [ref=e94]: "SELECT ?pubTitle WHERE { ?pub dblp:title ?pubTitle } LIMIT 5"
+    - generic [ref=e99]:
+      - generic [ref=e100]:
+        - generic [ref=e101]: Assistant
+        - generic [ref=e102]: 17:20
+      - generic [ref=e103]: Processing...
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - textbox "Ask for a SPARQL query..." [ref=e30]
+      - button "Send message" [disabled] [ref=e31]
+    - paragraph [ref=e35]: Press Enter to send, Shift + Enter for new line
