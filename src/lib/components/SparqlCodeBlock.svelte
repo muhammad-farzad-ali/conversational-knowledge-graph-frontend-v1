@@ -176,8 +176,6 @@
   .code-editor {
     display: block;
     width: 100%;
-    min-height: 120px;
-    max-height: 400px;
     margin: 0;
     padding: 0.75rem;
     background-color: var(--code-bg);
