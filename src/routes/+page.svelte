@@ -32,8 +32,8 @@
         <div class="welcome-icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
+            width="32"
+            height="32"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -77,6 +77,7 @@
     flex: 1;
     overflow-y: auto;
     padding: 1rem;
+    background-color: var(--bg-secondary);
   }
 
   .welcome {
@@ -86,41 +87,46 @@
     justify-content: center;
     height: 100%;
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   .welcome-icon {
     color: var(--accent);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.8;
   }
 
   .welcome h2 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.01em;
   }
 
   .welcome p {
     color: var(--text-secondary);
-    max-width: 400px;
+    max-width: 320px;
+    font-size: 0.875rem;
   }
 
   .examples {
-    margin-top: 2rem;
-    padding: 1rem;
-    background-color: var(--bg-secondary);
-    border-radius: 8px;
+    margin-top: 1.5rem;
+    padding: 0.875rem;
+    background-color: var(--bg-primary);
+    border-radius: 6px;
     border: 1px solid var(--border);
     text-align: left;
-    max-width: 400px;
+    max-width: 320px;
   }
 
   .example-title {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
 
   .examples ul {
@@ -130,14 +136,32 @@
   }
 
   .examples li {
-    padding: 0.375rem 0;
-    font-size: 0.875rem;
+    padding: 0.3125rem 0;
+    font-size: 0.8125rem;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: color 0.15s ease;
   }
 
   .examples li:hover {
     color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .chat-container {
+      padding: 0.75rem;
+    }
+
+    .welcome {
+      padding: 1rem;
+    }
+
+    .welcome h2 {
+      font-size: 1rem;
+    }
+
+    .examples {
+      max-width: 100%;
+    }
   }
 </style>

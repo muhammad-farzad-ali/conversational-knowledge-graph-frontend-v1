@@ -78,7 +78,7 @@
 
 <style>
   .input-container {
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     background-color: var(--bg-primary);
     border-top: 1px solid var(--border);
   }
@@ -89,24 +89,25 @@
     gap: 0.5rem;
     max-width: 900px;
     margin: 0 auto;
-    padding: 0.5rem;
-    background-color: var(--bg-secondary);
+    padding: 0.5rem 0.625rem;
+    background-color: var(--bg-primary);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    transition: border-color 0.2s ease;
+    border-radius: 8px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
 
   .input-wrapper:focus-within {
     border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-light);
   }
 
   textarea {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0.375rem 0.25rem;
     background-color: transparent;
     border: none;
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-family: inherit;
     resize: none;
     outline: none;
@@ -115,51 +116,56 @@
   }
 
   textarea::placeholder {
-    color: var(--text-secondary);
+    color: var(--text-muted);
   }
 
   textarea:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .send-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background-color: var(--accent);
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     color: white;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.15s ease;
     flex-shrink: 0;
   }
 
   .send-btn:hover:not(:disabled) {
     background-color: var(--accent-hover);
-    transform: scale(1.05);
   }
 
   .send-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  .send-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   .hint {
     text-align: center;
-    font-size: 0.75rem;
-    color: var(--text-secondary);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
     margin-top: 0.5rem;
   }
 
   kbd {
-    padding: 0.125rem 0.375rem;
-    background-color: var(--bg-tertiary);
+    padding: 0.0625rem 0.25rem;
+    background-color: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 3px;
     font-family: inherit;
-    font-size: 0.7rem;
+    font-size: 0.625rem;
+    color: var(--text-secondary);
   }
 </style>

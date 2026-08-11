@@ -74,21 +74,21 @@
 
 <style>
   .table-container {
-    margin-top: 0.75rem;
-    border-radius: 8px;
+    margin-top: 0.625rem;
+    border-radius: 6px;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 1px solid var(--code-border);
   }
 
   .table-header {
     display: flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.5rem 0.75rem;
-    background-color: #161b22;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.75rem;
-    font-weight: 500;
+    padding: 0.375rem 0.625rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--code-border);
+    font-size: 0.6875rem;
+    font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -96,13 +96,13 @@
 
   .table-wrapper {
     overflow-x: auto;
-    background-color: var(--code-bg);
+    background-color: var(--bg-primary);
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
   }
 
@@ -110,27 +110,32 @@
   td {
     padding: 0.5rem 0.75rem;
     text-align: left;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border-light);
     white-space: nowrap;
   }
 
   th {
-    background-color: #161b22;
+    background-color: var(--bg-secondary);
     color: var(--text-primary);
     font-weight: 600;
     position: sticky;
     top: 0;
+    font-size: 0.75rem;
   }
 
   td {
-    color: #e6edf3;
+    color: var(--text-primary);
   }
 
   tr:last-child td {
     border-bottom: none;
   }
 
-  tr:hover td {
-    background-color: rgba(255, 255, 255, 0.05);
+  tbody tr:hover td {
+    background-color: var(--bg-secondary);
+  }
+
+  tbody tr {
+    transition: background-color 0.1s ease;
   }
 </style>

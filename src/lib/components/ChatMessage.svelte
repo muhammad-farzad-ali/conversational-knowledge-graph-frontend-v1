@@ -80,9 +80,9 @@
 <style>
   .message {
     display: flex;
-    gap: 0.75rem;
-    padding: 1rem;
-    animation: fadeIn 0.3s ease-out;
+    gap: 0.625rem;
+    padding: 0.75rem 1rem;
+    animation: fadeIn 0.2s ease-out;
   }
 
   .message.user {
@@ -91,39 +91,42 @@
 
   .message.user .content {
     background-color: var(--user-bubble);
-    border-radius: 16px 16px 4px 16px;
+    border-radius: 12px 12px 2px 12px;
   }
 
   .message.assistant .content {
     background-color: var(--assistant-bubble);
-    border-radius: 16px 16px 16px 4px;
+    border-radius: 12px 12px 12px 2px;
   }
 
   .message.error .content {
-    border: 1px solid #dc3545;
+    border: 1px solid var(--error);
   }
 
   .avatar {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    color: var(--text-secondary);
   }
 
   .message.user .avatar {
-    background-color: var(--user-bubble);
+    background-color: var(--accent);
+    color: white;
   }
 
   .message.assistant .avatar {
     background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
   }
 
   .content {
     max-width: 70%;
-    padding: 0.75rem 1rem;
+    padding: 0.625rem 0.875rem;
   }
 
   .message-header {
@@ -134,19 +137,20 @@
   }
 
   .role {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     color: var(--text-primary);
   }
 
   .time {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
   }
 
   .message-body {
     color: var(--text-primary);
     line-height: 1.5;
+    font-size: 0.875rem;
   }
 
   .message-body p {
@@ -158,27 +162,28 @@
     align-items: center;
     gap: 0.5rem;
     color: var(--text-secondary);
+    font-size: 0.8125rem;
   }
 
   .spinner {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border: 2px solid var(--border);
     border-top-color: var(--accent);
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+    animation: spin 0.7s linear infinite;
   }
 
   .error-text {
-    color: #dc3545;
-    font-size: 0.875rem;
+    color: var(--error);
+    font-size: 0.8125rem;
     margin-top: 0.5rem;
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(6px);
     }
     to {
       opacity: 1;
@@ -195,6 +200,10 @@
   @media (max-width: 640px) {
     .content {
       max-width: 85%;
+    }
+
+    .message {
+      padding: 0.625rem 0.75rem;
     }
   }
 </style>

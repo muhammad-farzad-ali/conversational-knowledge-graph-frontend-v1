@@ -2,10 +2,32 @@
   let { code, onExecute } = $props();
 
   let copied = $state(false);
+  let isEditing = $state(false);
+  let editedCode = $state('');
+
+  function startEdit() {
+    editedCode = code;
+    isEditing = true;
+  }
+
+  function cancelEdit() {
+    isEditing = false;
+    editedCode = code;
+  }
+
+  function confirmEdit() {
+    isEditing = false;
+  }
+
+  function handleKeydown(event) {
+    if (event.key === 'Escape') {
+      cancelEdit();
+    }
+  }
 
   async function copyToClipboard() {
     try {
-      await navigator.clipboard.writeText(code);
+      await navigator.clipboard.writeText(isEditing ? editedCode : code);
       copied = true;
       setTimeout(() => {
         copied = false;
@@ -17,7 +39,7 @@
 
   function handleExecute() {
     if (onExecute) {
-      onExecute(code);
+      onExecute(isEditing ? editedCode : code);
     }
   }
 </script>
@@ -25,57 +47,53 @@
 <div class="code-container">
   <div class="code-header">
     <span class="language-tag">SPARQL</span>
-    <button class="copy-btn" onclick={copyToClipboard} title="Copy to clipboard">
-      {#if copied}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M20 6 9 17l-5-5"></path>
-        </svg>
-        Copied!
+    <div class="header-actions">
+      <button class="icon-btn" onclick={copyToClipboard} title="Copy to clipboard">
+        {#if copied}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        {:else}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+          </svg>
+        {/if}
+      </button>
+
+      {#if isEditing}
+        <button class="icon-btn" onclick={confirmEdit} title="Confirm edit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        </button>
+        <button class="icon-btn" onclick={cancelEdit} title="Cancel edit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
       {:else}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
-          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
-        </svg>
-        Copy
+        <button class="icon-btn" onclick={startEdit} title="Edit query">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+            <path d="m15 5 4 4"></path>
+          </svg>
+        </button>
       {/if}
-    </button>
+    </div>
   </div>
-  <pre class="code-block"><code>{code}</code></pre>
+
+  {#if isEditing}
+    <textarea class="code-editor" bind:value={editedCode} spellcheck="false" onkeydown={handleKeydown}></textarea>
+  {:else}
+    <pre class="code-block"><code>{code}</code></pre>
+  {/if}
 
   {#if onExecute}
     <div class="code-footer">
       <button class="execute-btn" onclick={handleExecute} title="Execute query">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
         Execute
@@ -86,74 +104,108 @@
 
 <style>
   .code-container {
-    margin-top: 0.75rem;
-    border-radius: 8px;
+    margin-top: 0.625rem;
+    border-radius: 6px;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 1px solid var(--code-border);
   }
 
   .code-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 0.75rem;
-    background-color: #161b22;
-    border-bottom: 1px solid var(--border);
+    padding: 0.375rem 0.625rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--code-border);
   }
 
   .language-tag {
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 0.6875rem;
+    font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
-  .copy-btn {
+  .header-actions {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    padding: 0.25rem 0.5rem;
+  }
+
+  .icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
     background-color: transparent;
     border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--text-secondary);
-    font-size: 0.75rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
   }
 
-  .copy-btn:hover {
+  .icon-btn:hover {
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
   }
 
+  .icon-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
   .code-block {
     margin: 0;
-    padding: 1rem;
+    padding: 0.75rem;
     background-color: var(--code-bg);
     overflow-x: auto;
     font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     line-height: 1.6;
-    color: #e6edf3;
+    color: var(--text-primary);
   }
 
   .code-block code {
     white-space: pre;
   }
 
+  .code-editor {
+    display: block;
+    width: 100%;
+    min-height: 120px;
+    max-height: 400px;
+    margin: 0;
+    padding: 0.75rem;
+    background-color: var(--code-bg);
+    border: none;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    resize: vertical;
+    outline: none;
+    tab-size: 2;
+  }
+
+  .code-editor:focus {
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+
   .code-footer {
-    padding: 0.5rem 0.75rem;
-    background-color: #161b22;
-    border-top: 1px solid var(--border);
+    padding: 0.375rem 0.625rem;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--code-border);
   }
 
   .execute-btn {
     display: flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.375rem 0.75rem;
+    padding: 0.3125rem 0.625rem;
     background-color: var(--accent);
     border: none;
     border-radius: 4px;
@@ -161,11 +213,15 @@
     font-size: 0.75rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.15s ease;
   }
 
   .execute-btn:hover {
     background-color: var(--accent-hover);
-    transform: scale(1.02);
+  }
+
+  .execute-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 </style>
