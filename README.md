@@ -46,8 +46,11 @@ The frontend communicates with these backend endpoints:
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/health` | GET | Health check |
-| `/sparql` | POST | Generate SPARQL from natural language |
-| `/results` | POST | Execute SPARQL query and return results |
+| `/chat` | POST | Unified endpoint for natural language and SPARQL queries |
+
+The `/chat` endpoint accepts a message and returns a typed response:
+- Natural language input → `{type: "sparql", content: "..."}` 
+- SPARQL input → `{type: "table", content: "..."}`
 
 ## Project Structure
 
