@@ -40,12 +40,13 @@
 declare module '$env/static/private' {
 	export const ACSetupSvcPort: string;
 	export const ACSvcPort: string;
+	export const AGENT: string;
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
+	export const BUN_BE_BUN: string;
 	export const ChocolateyInstall: string;
 	export const ChocolateyLastPathUpdate: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
-	export const COLOR: string;
 	export const COLORTERM: string;
 	export const CommonProgramFiles: string;
 	export const CommonProgramW6432: string;
@@ -53,7 +54,6 @@ declare module '$env/static/private' {
 	export const ComSpec: string;
 	export const COPILOT_DEBUG_NONCE: string;
 	export const DriverData: string;
-	export const EDITOR: string;
 	export const EFC_2120_1262719628: string;
 	export const EFC_2120_1592913036: string;
 	export const EFC_2120_2283032206: string;
@@ -66,36 +66,16 @@ declare module '$env/static/private' {
 	export const HOME: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
-	export const INIT_CWD: string;
 	export const JD2_HOME: string;
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
-	export const NODE: string;
-	export const NODE_ENV: string;
-	export const npm_command: string;
-	export const npm_config_cache: string;
-	export const npm_config_globalconfig: string;
-	export const npm_config_global_prefix: string;
-	export const npm_config_init_module: string;
-	export const npm_config_local_prefix: string;
-	export const npm_config_node_gyp: string;
-	export const npm_config_noproxy: string;
-	export const npm_config_npm_version: string;
-	export const npm_config_prefix: string;
-	export const npm_config_userconfig: string;
-	export const npm_config_user_agent: string;
-	export const npm_execpath: string;
-	export const npm_lifecycle_event: string;
-	export const npm_lifecycle_script: string;
-	export const npm_node_execpath: string;
-	export const npm_package_json: string;
-	export const npm_package_name: string;
-	export const npm_package_version: string;
 	export const NUMBER_OF_PROCESSORS: string;
 	export const OLLAMA_HOST: string;
 	export const OneDrive: string;
 	export const OPENAI_API_KEY: string;
+	export const OPENCODE: string;
+	export const OPENCODE_PID: string;
 	export const OPENCODE_SERVER_PASSWORD: string;
 	export const OS: string;
 	export const Path: string;
@@ -129,6 +109,7 @@ declare module '$env/static/private' {
 	export const VSCODE_INJECTION: string;
 	export const VSCODE_PYTHON_AUTOACTIVATE_GUARD: string;
 	export const windir: string;
+	export const NODE_ENV: string;
 }
 
 /**
@@ -217,12 +198,13 @@ declare module '$env/dynamic/private' {
 	export const env: {
 		ACSetupSvcPort: string;
 		ACSvcPort: string;
+		AGENT: string;
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
+		BUN_BE_BUN: string;
 		ChocolateyInstall: string;
 		ChocolateyLastPathUpdate: string;
 		CHROME_CRASHPAD_PIPE_NAME: string;
-		COLOR: string;
 		COLORTERM: string;
 		CommonProgramFiles: string;
 		CommonProgramW6432: string;
@@ -230,7 +212,6 @@ declare module '$env/dynamic/private' {
 		ComSpec: string;
 		COPILOT_DEBUG_NONCE: string;
 		DriverData: string;
-		EDITOR: string;
 		EFC_2120_1262719628: string;
 		EFC_2120_1592913036: string;
 		EFC_2120_2283032206: string;
@@ -243,36 +224,16 @@ declare module '$env/dynamic/private' {
 		HOME: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;
-		INIT_CWD: string;
 		JD2_HOME: string;
 		LANG: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
-		NODE: string;
-		NODE_ENV: string;
-		npm_command: string;
-		npm_config_cache: string;
-		npm_config_globalconfig: string;
-		npm_config_global_prefix: string;
-		npm_config_init_module: string;
-		npm_config_local_prefix: string;
-		npm_config_node_gyp: string;
-		npm_config_noproxy: string;
-		npm_config_npm_version: string;
-		npm_config_prefix: string;
-		npm_config_userconfig: string;
-		npm_config_user_agent: string;
-		npm_execpath: string;
-		npm_lifecycle_event: string;
-		npm_lifecycle_script: string;
-		npm_node_execpath: string;
-		npm_package_json: string;
-		npm_package_name: string;
-		npm_package_version: string;
 		NUMBER_OF_PROCESSORS: string;
 		OLLAMA_HOST: string;
 		OneDrive: string;
 		OPENAI_API_KEY: string;
+		OPENCODE: string;
+		OPENCODE_PID: string;
 		OPENCODE_SERVER_PASSWORD: string;
 		OS: string;
 		Path: string;
@@ -306,6 +267,7 @@ declare module '$env/dynamic/private' {
 		VSCODE_INJECTION: string;
 		VSCODE_PYTHON_AUTOACTIVATE_GUARD: string;
 		windir: string;
+		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}

@@ -56,12 +56,7 @@
       {#if message.loading}
         <div class="loading">
           <div class="spinner"></div>
-          <span>Generating SPARQL query...</span>
-        </div>
-      {:else if message.executing}
-        <div class="loading">
-          <div class="spinner"></div>
-          <span>Executing query...</span>
+          <span>Processing...</span>
         </div>
       {:else if message.content}
         <p>{message.content}</p>
