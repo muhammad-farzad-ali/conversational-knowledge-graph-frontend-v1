@@ -1,0 +1,31 @@
+- generic [ref=f3e3]:
+  - banner [ref=f3e4]:
+    - generic [ref=f3e5]:
+      - heading "SPARQL Chat" [level=1] [ref=f3e9]
+      - button "Clear" [ref=f3e11] [cursor=pointer]
+  - main [ref=f3e15]:
+    - generic [ref=f3e42]:
+      - generic [ref=f3e43]:
+        - generic [ref=f3e44]: You
+        - generic [ref=f3e45]: 17:39
+      - paragraph [ref=f3e47]: List publications
+    - generic [ref=f3e52]:
+      - generic [ref=f3e53]:
+        - generic [ref=f3e54]: Assistant
+        - generic [ref=f3e55]: 17:39
+      - generic [ref=f3e56]:
+        - paragraph [ref=f3e57]: "Here is your SPARQL query:"
+        - generic [ref=f3e58]:
+          - generic [ref=f3e59]:
+            - generic [ref=f3e60]: SPARQL
+            - generic [ref=f3e61]:
+              - button "Copy to clipboard" [ref=f3e62] [cursor=pointer]
+              - button "Confirm edit" [ref=f3e76] [cursor=pointer]
+              - button "Cancel edit" [ref=f3e79] [cursor=pointer]
+          - textbox [ref=f3e83]: "PREFIX dblp: <https://dblp.org/rdf/schema#> SELECT ?pubTitle (COUNT(DISTINCT ?authorName) AS ?Authors) (COUNT(DISTINCT ?venue) AS ?Venues) (COUNT(DISTINCT ?year) AS ?Years) WHERE { ?pub a dblp:Publication . ?pub dblp:title ?pubTitle . OPTIONAL { ?pub dblp:authoredBy ?author . ?author dblp:primaryCreatorName ?authorName . } OPTIONAL { ?pub dblp:publishedIn ?venue . } OPTIONAL { ?pub dblp:yearOfPublication ?year . } } GROUP BY ?pubTitle ORDER BY ASC(?pubTitle) LIMIT 10"
+          - button "Execute" [ref=f3e73] [cursor=pointer]
+  - generic [ref=f3e28]:
+    - generic [ref=f3e29]:
+      - textbox "Ask for a SPARQL query..." [ref=f3e30]
+      - button "Send message" [disabled] [ref=f3e31]
+    - paragraph [ref=f3e35]: Press Enter to send, Shift + Enter for new line

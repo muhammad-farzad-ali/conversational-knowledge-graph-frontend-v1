@@ -1,0 +1,41 @@
+- generic [ref=f5e3]:
+  - banner [ref=f5e4]:
+    - generic [ref=f5e5]:
+      - heading "SPARQL Chat" [level=1] [ref=f5e9]
+      - button "Clear" [ref=f5e11] [cursor=pointer]
+  - main [ref=f5e15]:
+    - generic [ref=f5e42]:
+      - generic [ref=f5e43]:
+        - generic [ref=f5e44]: You
+        - generic [ref=f5e45]: 17:45
+      - paragraph [ref=f5e47]: List publications
+    - generic [ref=f5e52]:
+      - generic [ref=f5e53]:
+        - generic [ref=f5e54]: Assistant
+        - generic [ref=f5e55]: 17:45
+      - generic [ref=f5e56]:
+        - paragraph [ref=f5e57]: "Here is your SPARQL query:"
+        - generic [ref=f5e58]:
+          - generic [ref=f5e59]:
+            - generic [ref=f5e60]: SPARQL
+            - generic [ref=f5e61]:
+              - button "Copy to clipboard" [ref=f5e62] [cursor=pointer]
+              - button "Confirm edit" [ref=f5e76] [cursor=pointer]
+              - button "Cancel edit" [ref=f5e79] [cursor=pointer]
+          - textbox [ref=f5e83]: "SELECT ?pubTitle WHERE { ?pub dblp:title ?pubTitle } LIMIT 5"
+          - button "Execute" [active] [ref=f5e73] [cursor=pointer]
+    - generic [ref=f5e89]:
+      - generic [ref=f5e90]:
+        - generic [ref=f5e91]: You
+        - generic [ref=f5e92]: 17:47
+      - paragraph [ref=f5e94]: "SELECT ?pubTitle WHERE { ?pub dblp:title ?pubTitle } LIMIT 5"
+    - generic [ref=f5e99]:
+      - generic [ref=f5e100]:
+        - generic [ref=f5e101]: Assistant
+        - generic [ref=f5e102]: 17:47
+      - generic [ref=f5e103]: Processing...
+  - generic [ref=f5e28]:
+    - generic [ref=f5e29]:
+      - textbox "Ask for a SPARQL query..." [ref=f5e30]
+      - button "Send message" [disabled] [ref=f5e31]
+    - paragraph [ref=f5e35]: Press Enter to send, Shift + Enter for new line

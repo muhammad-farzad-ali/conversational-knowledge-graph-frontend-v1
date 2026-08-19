@@ -1,0 +1,20 @@
+- generic [ref=f4e3]:
+  - banner [ref=f4e4]:
+    - generic [ref=f4e5]:
+      - heading "SPARQL Chat" [level=1] [ref=f4e9]
+      - button "Clear" [ref=f4e11] [cursor=pointer]
+  - main [ref=f4e15]:
+    - generic [ref=f4e16]:
+      - heading "Welcome to SPARQL Chat" [level=2] [ref=f4e20]
+      - paragraph [ref=f4e21]: Ask me to generate SPARQL queries for DBLP publications.
+      - generic [ref=f4e22]:
+        - paragraph [ref=f4e23]: "Try asking:"
+        - list [ref=f4e24]:
+          - listitem [ref=f4e25] [cursor=pointer]: "\"List all publications from 2023\""
+          - listitem [ref=f4e26] [cursor=pointer]: "\"Find authors who published in SIGMOD\""
+          - listitem [ref=f4e27] [cursor=pointer]: "\"Show me publications with their venues and years\""
+  - generic [ref=f4e28]:
+    - generic [ref=f4e29]:
+      - textbox "Ask for a SPARQL query..." [ref=f4e30]
+      - button "Send message" [disabled] [ref=f4e31]
+    - paragraph [ref=f4e35]: Press Enter to send, Shift + Enter for new line
